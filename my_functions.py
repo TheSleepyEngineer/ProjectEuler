@@ -11,3 +11,9 @@ def factors(n):
                 fact.append(i)
                 n=n/i
     return fact
+
+def is_prime(a):
+    for i in range(2,int(math.sqrt(a))+1):
+        if a%i==0:
+            return 0
+    return 1
