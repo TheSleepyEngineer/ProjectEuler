@@ -6,14 +6,12 @@ def is_palindrom(n):
     return 1
 
 
+currentPal=1
 
-i = 999
-j = 999
+for i in range(1,1000):
+    for j in range(i,1000):
+        if is_palindrom(i*j) and i*j > currentPal:
+            currentPal=i*j
 
-while (is_palindrom(i*j)==0):
-    if i<=j:
-        j-=1
-    else:
-        i-=1
 
-print(i*j)
+print(currentPal)
