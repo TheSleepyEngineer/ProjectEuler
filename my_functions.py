@@ -1,4 +1,5 @@
 import math
+from functools import reduce
 
 #prime factors:
 def factors(n):
@@ -17,12 +18,13 @@ def factors(n):
 
 def all_factors(n):
     fact=[]
-    r = n/2
+    r = math.sqrt(n)
     for i in range (1,int(r)+1):
         if n%i==0:
             fact.append(i)
-    fact.append(n)
+            fact.append(n//i)
     return fact
+
 
 
 def is_prime(a):
