@@ -13,6 +13,8 @@ factors=[]
 while(count <500):
     i+=1
     n+=i
+    if n < 50000:
+        continue
     if n%2!=0:
         continue
     factors=my_functions.all_factors(triangle(n))
