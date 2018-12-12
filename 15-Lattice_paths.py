@@ -31,15 +31,17 @@ def path(i,j,k=20,l=20):
 
 
 def backward_path(i,j):
-    if G[i][j] in dict_pathes:
-        return 1
+    print(i)
+    print(j)
+    if i==20 and j==20:
+        return 0
+
+    elif i<20 and j<20:
+        dict_pathes[G[i][j]]= dict_pathes[G[i+1][j]] + dict_pathes[G[i][j+1]]
+    elif i < 20:
+        dict_pathes[G[i][j]] = dict_pathes[G[i+1][j]]
     else:
-        if i<20 and j<20:
-            dict_pathes[G[i][j]]= max(dict_pathes[G[i+1][j]],dict_pathes[G[i][j+1]]) +1
-        elif i < 20:
-            dict_pathes[G[i][j]] = dict_pathes[G[i+1][j]] + 1
-        else:
-            dict_pathes[G[i][j]] = dict_pathes[G[i][j+1]] + 1
+        dict_pathes[G[i][j]] = dict_pathes[G[i][j+1]]
     return 0
 
 
@@ -49,10 +51,8 @@ def backward_path(i,j):
 
 #main function:
 
-for i in range (20,-1, -1):
-    for j in range (20,-1,-1):
+for i in range (20,0, -1):
+    for j in range (20,0,-1):
         backward_path(i,j)
-print(dict_pathes.get(1717))
 
-path(18,18)
-print(path_number)
+print(dict_pathes.get(11))
