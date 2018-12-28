@@ -1,8 +1,8 @@
 #Fill Grid:
 def Fill_grid(G=[]):
 	L=[]
-	for i in range(1,21):
-		for j in range(1,21):
+	for i in range(1,22):
+		for j in range(1,22):
 			if j < 10:
 				L.append(i*10+j)
 			else:
@@ -15,16 +15,16 @@ def Fill_grid(G=[]):
 #Give each point in the grid a value:
 
 def assign_values(G,path_value):
-	path_value[G[19][19]]=1
+	path_value[G[20][20]]=1
 
-	for i in range(19,-1, -1):
-		for j in range(19,-1, -1):
+	for i in range(20,-1, -1):
+		for j in range(20,-1, -1):
 
-			if i==19 and j==19:
+			if i==20 and j==20:
 				continue
-			if i == 19 :
+			if i == 20 :
 				path_value[G[i][j]] = path_value[G[i][j+1]]
-			elif j == 19:
+			elif j == 20:
 				path_value[G[i][j]] = path_value[G[i+1][j]]
 			else :
 				path_value[G[i][j]] = path_value[G[i][j+1]] + path_value[G[i+1][j]]
@@ -39,5 +39,4 @@ Fill_grid(G)
 assign_values(G,path_value)
 
 print(path_value[G[0][0]])
-
 
