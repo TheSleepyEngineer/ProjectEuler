@@ -1,58 +1,43 @@
+#Fill Grid:
+def Fill_grid(G=[]):
+	L=[]
+	for i in range(1,21):
+		for j in range(1,21):
+			if j < 10:
+				L.append(i*10+j)
+			else:
+				L.append (i*100+j)
+		G.append(L)
+		L=[]
+	return 0
 
 
-#Variables:
-dict_pathes={2020:1}
-n=0
-path_number=0
-K=[] # Temporary list
-G=[] #Matrix
+#Give each point in the grid a value:
+
+def assign_values(G,path_value):
+	path_value[G[19][19]]=1
+
+	for i in range(19,-1, -1):
+		for j in range(19,-1, -1):
+
+			if i==19 and j==19:
+				continue
+			if i == 19 :
+				path_value[G[i][j]] = path_value[G[i][j+1]]
+			elif j == 19:
+				path_value[G[i][j]] = path_value[G[i+1][j]]
+			else :
+				path_value[G[i][j]] = path_value[G[i][j+1]] + path_value[G[i+1][j]]
+
+	return 0
+
+# main function:
+
+G=[]
+path_value={}
+Fill_grid(G)
+assign_values(G,path_value)
+
+print(path_value[G[0][0]])
 
 
-#Fill the Grid G:
-for i in range(0,21):
-    for j in range(0,21):
-        if j < 10 :
-            K.append(i*10 + j)
-        else:
-            K.append(i*100 + j)
-    G.append(K)
-    K=[]
-
-def path(i,j,k=20,l=20):
-    global path_number
-    if i < k:
-        path(i+1,j,k,l)
-    if j < l:
-        path(i,j+1,k,l)
-    if i==k and j==l:
-        path_number+=1
-    return 0
-
-
-
-def backward_path(i,j):
-    print(i)
-    print(j)
-    if i==20 and j==20:
-        return 0
-
-    elif i<20 and j<20:
-        dict_pathes[G[i][j]]= dict_pathes[G[i+1][j]] + dict_pathes[G[i][j+1]]
-    elif i < 20:
-        dict_pathes[G[i][j]] = dict_pathes[G[i+1][j]]
-    else:
-        dict_pathes[G[i][j]] = dict_pathes[G[i][j+1]]
-    return 0
-
-
-
-
-
-
-#main function:
-
-for i in range (20,0, -1):
-    for j in range (20,0,-1):
-        backward_path(i,j)
-
-print(dict_pathes.get(11))
