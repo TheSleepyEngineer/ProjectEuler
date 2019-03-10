@@ -2,7 +2,7 @@
 
 M=[]
 
-file=open("/tmp/MaximumPathSum_1","r")
+file=open("/tmp/MaximumPathSum_2","r")
 lines=file.readlines()
 
 for line in lines:
