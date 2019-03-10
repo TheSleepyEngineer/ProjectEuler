@@ -1,32 +1,42 @@
-numbers_in_characters= {0:"", 1: "one", 2: "two", 3: "three", 4: "four", 5:"five", 6:"six", 7:"seven", 8:"eight", 9:"nine" , 10:"ten", 11:"eleven", 12:"twelve", 13:"thirteen", 14:"fourteen", 15:"fifteen", 16:"sixteen", 17:"seventeen", 18:"eighteen", 19:" nineteen" , 20:"twenty", 30:"thirty", 40:"forty", 50:"fifty", 60:"sixty", 70:"seventy", 80:"eighty", 90:"ninety",100:"hundred", 1000:"thousand"}
+numbers_in_characters= {0:"", 1: "One", 2: "Two", 3: "Three", 4: "Four", 5:"Five", 6:"Six", 7:"Seven", 8:"Eight", 9:"Nine" , 10:"Ten", 11:"Eleven", 12:"Twelve", 13:"Thirteen", 14:"Fourteen", 15:"Fifteen", 16:"Sixteen", 17:"Seventeen", 18:"Eighteen", 19:"Nineteen" , 20:"Twenty", 30:"Thirty", 40:"Forty", 50:"Fifty", 60:"Sixty", 70:"Seventy", 80:"Eighty", 90:"Ninety",100:"Hundred", 1000:"Thousand"}
 
 def convert_to_letters(x):
     length_in_letters=0
+    string=''
 
     # in case x == 1000
     if x == "1000":
-        length_in_letters = len(numbers_in_characters[1]) + len("thousand")
+        length_in_letters = len(numbers_in_characters[1]) + len("Thousand")
         return length_in_letters
 
 
     i = len(x)
 
     if i==3:
-        string = numbers_in_characters[int(x[0])] + "hundred"
-        length_in_letters+= len(string)
-        i=-1
+        string = numbers_in_characters[int(x[0])] + "Hundred"
+        #length_in_letters+= len(string)
+        i-=1
         x= x[1] + x[2]
         # in case 300 don't need the "and"
         if int(x) != 0:
-            length_in_letters+= len("and")
+            string +="And"
 
-    if i==2:
-        length_in_letters += len(numbers_in_characters[int(x[0]+"0")])
-        i = -1
-        x = x[1]
+    if i==2 and x[0]=='1':
+        string += numbers_in_characters[int(x)]
 
-    if i==1:
-        length_in_letters += len(numbers_in_characters[int(x[0])])
+    else:
+        if i==2:
+            #length_in_letters += len(numbers_in_characters[int(x[0]+"0")])
+            string += numbers_in_characters[int(x[0]+"0")]
+            i -=1
+            x = x[1]
+
+        if i==1:
+            #length_in_letters += len(numbers_in_characters[int(x[0])])
+            string += numbers_in_characters[int(x[0])]
+
+
+    length_in_letters += len(string)
 
     return length_in_letters
 
